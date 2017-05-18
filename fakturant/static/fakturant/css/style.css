@@ -1,0 +1,36 @@
+body {
+  font-family: serif;
+}
+
+.navbar {
+  margin-bottom: 40px;
+  height: 80px;
+}
+
+.logo {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+
+table {
+  overflow: auto;
+}
+
+.company-info {
+  float: left;
+  margin-bottom: 30px;
+}
+
+.company-balance {
+  float: right;
+}
+
+h2.company-name,
+.company-info p span,
+.company-balance p {
+  font-weight: 900;
+}
+
+h2.company-name {
+  margin-top: 0;
+}

@@ -1,0 +1,51 @@
+{% extends "fakturant/layout.html" %}
+{% load humanize %}
+{% block content %}
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+  <!-- create table if invoices received -->
+  {% if invoices %}
+    <table class="table table-striped table-all">
+    <tr>
+      <th>No.</th>
+      <th>Type</th>
+      <th>ID</th>
+      <th>Date created</th>
+      <th>Company</th>
+      <th>Description</th>
+      <th>Unit cost</th>
+      <th>VAT</th>
+      <th>Total</th>
+    </tr>
+
+    {% for invoice in invoices %}
+      <tr>
+        <td>{{ forloop.counter }}.</td>
+        <td>{{ invoice.invoice_type }}</td>
+        <td><a href="{% url 'fakturant:show_invoice' invoice.invoice_id %}">{{ invoice.invoice_id }}</a></td>
+        <td>{{ invoice.date_created|date:"M d, Y" }}</td>
+        <td><a href="{% url 'fakturant:show_company' invoice.company.company_short_name %}">
+        {{ invoice.company }}
+        </a></td>
+        <td>{{ invoice.description }}</td>
+        <td>{{ invoice.unit_cost|intcomma }}</td>
+        <td>{{ invoice.vat|intcomma }}</td>
+        <td>{{ invoice.total|intcomma }}</td>
+      </tr>
+    {% endfor %}  
+
+    </table>
+  {% else %}
+    <p>There are no invoices created</p>
+  {% endif %}
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
